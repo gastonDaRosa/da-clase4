@@ -7,7 +7,6 @@ public class Cliente {
     private String userName;
     private String nombre;
     private String apellido;
-    private boolean habilitado;
     private ArrayList<Factura> facturas;
 
     
@@ -16,11 +15,10 @@ public class Cliente {
         this.facturas = new ArrayList<Factura>();
     }
 
-    public Cliente(String userName, String nombre, String apellido, boolean habilitado) {
+    public Cliente(String userName, String nombre, String apellido) {
         this.userName = userName;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.habilitado = habilitado;
         this.facturas = new ArrayList<Factura>();
     }
 
@@ -46,14 +44,6 @@ public class Cliente {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public boolean isHabilitado() {
-        return habilitado;
-    }
-
-    public void setHabilitado(boolean habilitado) {
-        this.habilitado = habilitado;
     }
 
     public ArrayList<Factura> getFacturas() {
