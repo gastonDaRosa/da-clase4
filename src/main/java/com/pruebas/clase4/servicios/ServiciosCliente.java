@@ -12,8 +12,8 @@ public class ServiciosCliente {
 
     private static ServiciosCliente instancia;
     private ServiciosStock instanciaStock;
-    private List<Cliente> resultado = new ArrayList<Cliente>();
-    private List<Cliente> clientes = new ArrayList<Cliente>();
+    private ArrayList<Cliente> resultado = new ArrayList<Cliente>();
+    private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
     private int minutosConsultados = 0;
 
     // Patron Singleton
@@ -33,14 +33,25 @@ public class ServiciosCliente {
         clientes.add(cliente);
     }
 
-    public List<Cliente> getClientes() {
+    public ArrayList<Cliente> getClientes() {
         return clientes;
+    }
+
+    public Cliente getClienteId(String idCliente){
+        for (Cliente cliente : clientes) {
+            if(cliente.getId().equals(idCliente)){
+                return cliente;
+            }
+        }
+        return null;
     }
 
 
     public void cargarDatosIniciales() {
-        DatosDePrueba.cargarDatosIniciales();
-
+        //DatosDePrueba.cargarDatosIniciales();
+    }
+    public void cargarDatosEstaticos(){
+        DatosDePrueba.cargarDatosEstaticosVoid();
     }
 
     //EJ 1

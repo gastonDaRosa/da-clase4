@@ -35,7 +35,7 @@ public class LineaFactura {
     }
 
     public boolean existeProducto(Producto prod){
-        return this.proudct.getNombre() == prod.getNombre();
+        return this.proudct.getNombre().equals(prod.getNombre());
     }
 
 

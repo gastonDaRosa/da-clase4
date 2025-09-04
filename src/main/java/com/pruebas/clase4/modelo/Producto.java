@@ -4,7 +4,7 @@ public class Producto {
     private String nombre;
     private int precio;
     private int unidades;
-    private Proveedor proveedor;
+    private String proveedorId;
 
     public Producto() {
     }
@@ -13,7 +13,7 @@ public class Producto {
         this.nombre = nombre;
         this.precio = precio;
         this.unidades = unidades;
-        this.proveedor = proveedor;
+        this.proveedorId = proveedor.getId();
     }
 
     public String getNombre() {
@@ -40,22 +40,23 @@ public class Producto {
         this.unidades = unidades;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
+    public String getProveedor() {
+        return proveedorId;
     }
 
     public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
+        this.proveedorId = proveedor.getId();
     }
 
+    /* 
     public void agregarAProveedor() {
-        this.proveedor.agregarProducto(this);
+        this.proveedorId.agregarProducto(this);
     }
+    */
 
     @Override
     public String toString() {
-        return "Producto [nombre=" + nombre + ", precio=" + precio + ", unidades=" + unidades + ", proveedor="
-                + proveedor.getNombre() + "]";
+        return "Producto [nombre=" + nombre + ", precio=" + precio + ", unidades=" + unidades + "]";
     }
 
 

@@ -2,23 +2,26 @@ package com.pruebas.clase4.modelo;
 
 import java.util.ArrayList;
 
+import com.pruebas.clase4.servicios.ServiciosCliente;
+import com.pruebas.clase4.servicios.ServiciosStock;
+
 public class Factura {
 
     private ArrayList<LineaFactura> lineas;
-    private Cliente cliente;
+    private String clienteId;
 
     public Factura() {
         this.lineas = new ArrayList<LineaFactura>();
     }
 
-    public Factura(Cliente cliente) {
-        this.cliente = cliente;
+    public Factura(String cliente) {
+        this.clienteId = cliente;
         this.lineas  = new ArrayList<LineaFactura>();
     }
 
-    public Factura(Cliente cliente, ArrayList<LineaFactura> lineas) {
+    public Factura(String cliente, ArrayList<LineaFactura> lineas) {
         this.lineas = lineas;
-        this.cliente = cliente;
+        this.clienteId = cliente;
     }
 
     public ArrayList<LineaFactura> getLineas() {
@@ -29,12 +32,12 @@ public class Factura {
         this.lineas = lineas;
     }
 
-    public Cliente getCliente() {
-        return cliente;
+    public String getClienteId() {
+        return clienteId;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClienteId(String cliente) {
+        this.clienteId = cliente;
     }
 
     public boolean existeProductoEnLineas(Producto prod){
@@ -62,14 +65,14 @@ public class Factura {
 
         if(lineas != null && lineas.size() > 0 ){
             for (LineaFactura linea : lineas) {
-                ret += linea.toString();
+                ret += "\n    " + linea.toString();
             }
         }else{
             ret += "La Factura no cuenta con lineas que mostrar";
         }
 
-        if(cliente != null && cliente.getNombre() != null && cliente.getApellido() != null){
-            ret += ", cliente=" + cliente.getNombre() + " " + cliente.getApellido() + "]";
+        if(clienteId != null ){
+            ret += ", cliente=" + ServiciosCliente.getInstancia(ServiciosStock.getInstancia()).getClienteId(clienteId).getNombre() + "]";
         }else{
             ret += ", cliente= Cliente no encontrado]";
         }

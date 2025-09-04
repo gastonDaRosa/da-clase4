@@ -4,22 +4,32 @@ import java.util.ArrayList;
 
 
 public class Cliente {
+    private String Id;
     private String userName;
     private String nombre;
     private String apellido;
     private ArrayList<Factura> facturas;
+    private static int idAuto = 0;
 
 
     public Cliente() {
+        this.Id = "Cliente"+idAuto;
+        idAuto++;
         this.facturas = new ArrayList<Factura>();
     }
 
     public Cliente(String userName, String nombre, String apellido) {
+        this.Id = "Cliente"+idAuto;
+        idAuto++;
         this.userName = userName;
         this.nombre = nombre;
         this.apellido = apellido;
         this.facturas = new ArrayList<Factura>();
     }
+    public String getId() {
+        return Id;
+    }
+
 
     public String getUserName() {
         return userName;

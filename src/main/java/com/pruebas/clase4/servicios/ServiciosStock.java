@@ -1,7 +1,6 @@
 package com.pruebas.clase4.servicios;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.pruebas.clase4.claseDePrueba.DatosDePrueba;
 import com.pruebas.clase4.modelo.Producto;
@@ -10,8 +9,8 @@ import com.pruebas.clase4.modelo.Proveedor;
 public class ServiciosStock {
 
     private static ServiciosStock instancia;
-    private List<Producto> productos = new ArrayList<Producto>();
-    private List<Proveedor> proveedores = new ArrayList<Proveedor>();
+    private ArrayList<Producto> productos = new ArrayList<Producto>();
+    private ArrayList<Proveedor> proveedores = new ArrayList<Proveedor>();
 
     // Patron Singleton
     private ServiciosStock() {
@@ -35,16 +34,16 @@ public class ServiciosStock {
         proveedores.add(provider);
     }
 
-    public List<Producto> getStocks() {
+    public ArrayList<Producto> getStocks() {
         return productos;
     }
 
-    public List<Proveedor> getProveedores() {
+    public ArrayList<Proveedor> getProveedores() {
         return proveedores;
     }
 
     public void cargarDatosIniciales() {
-        DatosDePrueba.cargarDatosIniciales();
+        //DatosDePrueba.cargarDatosIniciales();
 
     }
 

@@ -24,7 +24,7 @@ public class ServiciosFactura {
         return instancia;
     }
 
-    
+
     public void agregarFactura(Factura factura) {
         facturas.add(factura);
     }
@@ -35,7 +35,7 @@ public class ServiciosFactura {
 
 
     public void cargarDatosIniciales() {
-        DatosDePrueba.cargarDatosIniciales();
+        //DatosDePrueba.cargarDatosIniciales();
 
     }
 

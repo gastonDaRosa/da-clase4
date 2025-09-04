@@ -21,12 +21,16 @@ public class ControladorCliente {
     public List<Cliente> todosLosClientes() {
         //serviciosUsuario.getInstancia().cargarDatosIniciales();
         //serviciosUsuario.getInstancia().cargarJuegoPrueba2(serviciosUsuario);
-        return serviciosCliente.getClientes();
+        return serviciosCliente.getInstancia(ServiciosStock.getInstancia()).getClientes();
     }
 
-    @GetMapping("/carga")
+    @GetMapping("/cargaRandom")
     public void cargarDatos(){
-        //serviciosUsuario.getInstancia().cargarDatosIniciales();
+        serviciosCliente.cargarDatosIniciales();
+    }
+    @GetMapping("/carga")
+    public void cargarDatosEstaticos(){
+        serviciosCliente.cargarDatosEstaticos();
     }
 
 

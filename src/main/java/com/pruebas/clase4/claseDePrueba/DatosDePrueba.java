@@ -13,6 +13,8 @@ import com.pruebas.clase4.modelo.LineaFactura;
 import com.pruebas.clase4.modelo.Producto;
 import com.pruebas.clase4.modelo.Proveedor;
 import com.pruebas.clase4.servicios.ServiciosCliente;
+import com.pruebas.clase4.servicios.ServiciosFactura;
+import com.pruebas.clase4.servicios.ServiciosStock;
 
 
 
@@ -35,6 +37,14 @@ public class DatosDePrueba {
         prov1.agregarProducto(mouse);
         prov2.agregarProducto(arroz);
 
+        ServiciosStock.getInstancia().agregarProveedor(prov1);
+        ServiciosStock.getInstancia().agregarProveedor(prov2);
+
+        ServiciosStock.getInstancia().agregarProducto(laptop);
+        ServiciosStock.getInstancia().agregarProducto(mouse);
+        ServiciosStock.getInstancia().agregarProducto(arroz);
+
+
         // === Clientes ===
         Cliente juan = new Cliente("jperez", "Juan", "Pérez");
         Cliente maria = new Cliente("mgarcia", "María", "García");
@@ -42,20 +52,28 @@ public class DatosDePrueba {
 
         // === Facturas ===
         // Juan compra Laptop y Arroz (no compra el Mouse)
-        Factura facturaJuan = new Factura(juan);
+        Factura facturaJuan = new Factura(juan.getId());
         facturaJuan.getLineas().add(new LineaFactura(1, laptop));
         facturaJuan.getLineas().add(new LineaFactura(2, arroz));
         juan.agregarFactura(facturaJuan);
 
         // María compra Mouse (sí compra el producto más barato)
-        Factura facturaMaria = new Factura(maria);
+        Factura facturaMaria = new Factura(maria.getId());
         facturaMaria.getLineas().add(new LineaFactura(3, mouse));
         maria.agregarFactura(facturaMaria);
 
         // Carlos compra solo Arroz (no compra el Mouse)
-        Factura facturaCarlos = new Factura(carlos);
+        Factura facturaCarlos = new Factura(carlos.getId());
         facturaCarlos.getLineas().add(new LineaFactura(5, arroz));
         carlos.agregarFactura(facturaCarlos);
+
+        ServiciosCliente.getInstancia(ServiciosStock.getInstancia()).agregarCliente(juan);
+        ServiciosCliente.getInstancia(ServiciosStock.getInstancia()).agregarCliente(maria);
+        ServiciosCliente.getInstancia(ServiciosStock.getInstancia()).agregarCliente(carlos);
+
+        ServiciosFactura.getInstancia().agregarFactura(facturaJuan);
+        ServiciosFactura.getInstancia().agregarFactura(facturaMaria);
+        ServiciosFactura.getInstancia().agregarFactura(facturaCarlos);
 
         // === Retornar clientes en lista ===
         return new ArrayList<>(Arrays.asList(juan, maria, carlos));
@@ -68,15 +86,14 @@ public class DatosDePrueba {
         System.out.println("=== JUEGO DE PRUEBA ESTÁTICO ===");
         for (Cliente c : clientes) {
             System.out.println(c);
-            for (Factura f : c.getFacturas()) {
-                System.out.println("  Factura:");
-                for (LineaFactura l : f.getLineas()) {
-                    System.out.println("    " + l);
-                }
-            }
+            c.getFacturas().forEach(f -> {
+                System.out.println("  Total de productos en factura: " + f.getLineas().size());
+                f.getLineas().forEach(l -> System.out.println("    " + l.getProudct().getNombre()));
+            });
         }
     }
 
+    /*
     public static void cargarDatosIniciales() {
 		Random random = new Random();
 
@@ -163,5 +180,5 @@ public class DatosDePrueba {
         }
         System.out.println("================================");
 	}
-
+    */
 }
