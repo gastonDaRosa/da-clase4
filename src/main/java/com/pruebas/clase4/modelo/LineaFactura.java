@@ -34,6 +34,16 @@ public class LineaFactura {
         this.proudct = proudct;
     }
 
+    public boolean existeProducto(Producto prod){
+        return this.proudct.getNombre() == prod.getNombre();
+    }
+
+
+    @Override
+    public String toString() {
+        return "LineaFactura [cantidad=" + cantidad + ", proudct=" + proudct.getNombre() + "]";
+    }
+
     
 
     

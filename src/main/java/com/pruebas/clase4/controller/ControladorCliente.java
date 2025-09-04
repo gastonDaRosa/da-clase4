@@ -8,29 +8,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pruebas.clase4.modelo.Cliente;
-import com.pruebas.clase4.servicios.ServiciosUsuario;
+import com.pruebas.clase4.servicios.ServiciosCliente;
+import com.pruebas.clase4.servicios.ServiciosStock;
 
 @RestController
-@RequestMapping("/partePathController")
-public class ControladorAccesos {
+@RequestMapping("/cliente")
+public class ControladorCliente {
 
-    ServiciosUsuario serviciosUsuario = ServiciosUsuario.getInstancia();
-    
+    ServiciosCliente serviciosCliente = ServiciosCliente.getInstancia(ServiciosStock.getInstancia());
+
     @GetMapping("/todos")
-    public List<Cliente> todosLosUsuarios() {
+    public List<Cliente> todosLosClientes() {
         //serviciosUsuario.getInstancia().cargarDatosIniciales();
         //serviciosUsuario.getInstancia().cargarJuegoPrueba2(serviciosUsuario);
-        return serviciosUsuario.getInstancia().getUsuarios();
+        return serviciosCliente.getClientes();
     }
 
     @GetMapping("/carga")
     public void cargarDatos(){
-        serviciosUsuario.getInstancia().cargarDatosIniciales();
+        //serviciosUsuario.getInstancia().cargarDatosIniciales();
     }
 
-    @GetMapping("/lista")
-    public List<Cliente> usuariosHabilitadosConAccesoMayorA(@RequestParam int minutos) {
-        return null; // Implementación pendiente
-    }
 
 }

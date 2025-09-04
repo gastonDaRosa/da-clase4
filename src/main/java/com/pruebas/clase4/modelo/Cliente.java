@@ -9,8 +9,7 @@ public class Cliente {
     private String apellido;
     private ArrayList<Factura> facturas;
 
-    
-    
+
     public Cliente() {
         this.facturas = new ArrayList<Factura>();
     }
@@ -50,23 +49,28 @@ public class Cliente {
         return facturas;
     }
 
-    public void setFacturas(ArrayList<Factura> accesos) {
+    public void setFacturas(ArrayList<Factura> facturas) {
         this.facturas = facturas;
     }
 
     public void agregarFactura( Factura factura ){
 
-        //if(this.accesos != null){
-        //    this.accesos.add(acceso);
+        //if(this.facturas != null){
+        //    this.facturas.add(acceso);
         //}else{
-        //    this.accesos = new ArrayList<Acceso>();
-        //    this.accesos.add(acceso);
+        //    this.facturas = new ArrayList<Acceso>();
+        //    this.facturas.add(acceso);
         //}
 
         this.facturas.add(factura);
 
     }
 
-    
-    
+    @Override
+    public String toString() {
+        return "Cliente [userName=" + userName + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+    }
+
+
+
 }

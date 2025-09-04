@@ -37,12 +37,44 @@ public class Factura {
         this.cliente = cliente;
     }
 
-    
-    
+    public boolean existeProductoEnLineas(Producto prod){
+        for (LineaFactura linea : lineas) {
+            if(linea.existeProducto(prod)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public int totalGastadoProductoEnLineas(Producto prod){
+        int ret = 0;
+        for (LineaFactura linea : lineas) {
+            if(linea.existeProducto(prod)){
+                ret += linea.getProudct().getPrecio();
+            }
+        }
+        return ret;
+    }
 
-    
+    @Override
+    public String toString() {
 
-    
+        String ret = "Factura [lineas=";
+
+        if(lineas != null && lineas.size() > 0 ){
+            for (LineaFactura linea : lineas) {
+                ret += linea.toString();
+            }
+        }else{
+            ret += "La Factura no cuenta con lineas que mostrar";
+        }
+
+        if(cliente != null && cliente.getNombre() != null && cliente.getApellido() != null){
+            ret += ", cliente=" + cliente.getNombre() + " " + cliente.getApellido() + "]";
+        }else{
+            ret += ", cliente= Cliente no encontrado]";
+        }
+        return ret;
+    }
 
 
 }
